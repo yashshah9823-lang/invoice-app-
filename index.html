@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Invoice App</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+
+<section class="invoice-app-section">
+
+  <div class="invoice-shell">
+
+    <!-- HERO -->
+    <div class="invoice-app__hero">
+      <div class="invoice-app__hero-copy">
+        <p class="invoice-app__kicker">Invoice Builder</p>
+        <h1>Invoice Dashboard</h1>
+        <div>Create, manage and export invoices easily</div>
+      </div>
+
+      <div class="invoice-app__hero-meta">
+        <div class="invoice-app__hero-chip">Minimal dashboard UI with local invoice memory</div>
+        <div class="invoice-app__hero-chip">Instant math, tax handling, and one-click PDF export</div>
+      </div>
+    </div>
+
+    <!-- APP ROOT -->
+    <div
+      class="invoice-app"
+      data-invoice-app
+      data-default-company-name="Your Company Name"
+      data-default-company-email="hello@yourbrand.com"
+      data-default-company-phone="+91 9999999999"
+      data-default-company-address="Surat, India"
+      data-default-currency="INR"
+      data-default-tax-rate="18"
+      data-default-notes="Payment due within 7 days"
+    >
+
+      <!-- STATS -->
+      <div class="invoice-app__stats">
+        <article class="invoice-app__stat">
+          <span class="invoice-app__stat-label">Subtotal</span>
+          <strong class="invoice-app__stat-value" data-summary="subtotal">$0.00</strong>
+        </article>
+        <article class="invoice-app__stat">
+          <span class="invoice-app__stat-label">Tax</span>
+          <strong class="invoice-app__stat-value" data-summary="tax">$0.00</strong>
+        </article>
+        <article class="invoice-app__stat">
+          <span class="invoice-app__stat-label">Total</span>
+          <strong class="invoice-app__stat-value" data-summary="grand-total">$0.00</strong>
+        </article>
+        <article class="invoice-app__stat">
+          <span class="invoice-app__stat-label">Saved</span>
+          <strong class="invoice-app__stat-value" data-summary="saved-count">0</strong>
+        </article>
+      </div>
+
+      <div class="invoice-app__layout">
+
+        <!-- LEFT -->
+        <div class="invoice-app__panel">
+
+          <div class="invoice-app__stack">
+
+            <!-- Invoice Details -->
+            <section>
+              <div class="invoice-app__section-head">
+                <div>
+                  <h3 class="invoice-app__section-title">Invoice Details</h3>
+                  <p class="invoice-app__section-copy">Core invoice information</p>
+                </div>
+                <span class="invoice-app__section-label">Core</span>
+              </div>
+
+              <div class="invoice-app__grid">
+
+                <div class="invoice-app__field-group">
+                  <label>Invoice Number</label>
+                  <input class="invoice-app__input" data-field="invoiceNumber">
+                </div>
+
+                <div class="invoice-app__field-group">
+                  <label>PO</label>
+                  <input class="invoice-app__input" data-field="purchaseOrder">
+                </div>
+
+                <div class="invoice-app__field-group">
+                  <label>Issue Date</label>
+                  <input class="invoice-app__input" type="date" data-field="issueDate">
+                </div>
+
+                <div class="invoice-app__field-group">
+                  <label>Due Date</label>
+                  <input class="invoice-app__input" type="date" data-field="dueDate">
+                </div>
+
+                <div class="invoice-app__field-group">
+                  <label>Currency</label>
+                  <select class="invoice-app__select" data-field="currency">
+                    <option>USD</option>
+                    <option>INR</option>
+                  </select>
+                </div>
+
+                <div class="invoice-app__field-group">
+                  <label>Tax %</label>
+                  <input class="invoice-app__input" type="number" data-field="taxRate">
+                </div>
+
+              </div>
+            </section>
+
+            <!-- Client -->
+            <section>
+              <div class="invoice-app__section-head">
+                <h3 class="invoice-app__section-title">Client</h3>
+              </div>
+
+              <div class="invoice-app__grid">
+
+                <div class="invoice-app__field-group">
+                  <label>Company</label>
+                  <input class="invoice-app__input" data-field="companyName">
+                </div>
+
+                <div class="invoice-app__field-group">
+                  <label>Client Name</label>
+                  <input class="invoice-app__input" data-field="clientName">
+                </div>
+
+                <div class="invoice-app__field-group">
+                  <label>Email</label>
+                  <input class="invoice-app__input" data-field="companyEmail">
+                </div>
+
+                <div class="invoice-app__field-group">
+                  <label>Client Email</label>
+                  <input class="invoice-app__input" data-field="clientEmail">
+                </div>
+
+                <div class="invoice-app__field-group">
+                  <label>Phone</label>
+                  <input class="invoice-app__input" data-field="companyPhone">
+                </div>
+
+                <div class="invoice-app__field-group">
+                  <label>Client Phone</label>
+                  <input class="invoice-app__input" data-field="clientPhone">
+                </div>
+
+                <div class="invoice-app__field-group invoice-app__field-group--full">
+                  <label>Company Address</label>
+                  <textarea class="invoice-app__textarea" data-field="companyAddress"></textarea>
+                </div>
+
+                <div class="invoice-app__field-group invoice-app__field-group--full">
+                  <label>Client Address</label>
+                  <textarea class="invoice-app__textarea" data-field="clientAddress"></textarea>
+                </div>
+
+              </div>
+            </section>
+
+            <!-- Line Items -->
+            <section>
+              <div class="invoice-app__section-head">
+                <h3 class="invoice-app__section-title">Line Items</h3>
+              </div>
+
+              <div class="invoice-app__button-row">
+                <button class="invoice-app__button" data-action="add-item">+ Add Item</button>
+              </div>
+
+              <div class="invoice-app__table-wrap">
+                <table class="invoice-app__table">
+                  <thead>
+                    <tr>
+                      <th>Description</th>
+                      <th>Qty</th>
+                      <th>Rate</th>
+                      <th>Total</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody data-line-items></tbody>
+                </table>
+              </div>
+
+              <template data-line-item-template>
+                <tr data-line-item-row>
+                  <td><input class="invoice-app__input" data-item-field="description"></td>
+                  <td><input class="invoice-app__input" type="number" data-item-field="quantity"></td>
+                  <td><input class="invoice-app__input" type="number" data-item-field="rate"></td>
+                  <td class="invoice-app__line-total" data-line-total>$0</td>
+                  <td><button class="invoice-app__icon-button" data-action="remove-item">×</button></td>
+                </tr>
+              </template>
+            </section>
+
+            <!-- Notes -->
+            <section>
+              <div class="invoice-app__section-head">
+                <h3 class="invoice-app__section-title">Notes</h3>
+              </div>
+
+              <textarea class="invoice-app__textarea" data-field="notes"></textarea>
+            </section>
+
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <aside class="invoice-app__sidebar">
+
+          <section class="invoice-app__sidebar-card">
+            <h3>Total</h3>
+
+            <div class="invoice-app__field-group">
+              <label>Discount Type</label>
+              <select class="invoice-app__select" data-field="discountType">
+                <option value="amount">Flat</option>
+                <option value="percent">%</option>
+              </select>
+            </div>
+
+            <div class="invoice-app__field-group">
+              <label>Discount</label>
+              <input class="invoice-app__input" type="number" data-field="discountValue">
+            </div>
+
+            <div class="invoice-app__totals">
+              <div class="invoice-app__totals-row">
+                <span>Subtotal</span>
+                <strong data-total="subtotal">$0</strong>
+              </div>
+              <div class="invoice-app__totals-row">
+                <span>Tax</span>
+                <strong data-total="tax">$0</strong>
+              </div>
+              <div class="invoice-app__totals-row invoice-app__totals-row--grand">
+                <span>Total</span>
+                <strong data-total="grandTotal">$0</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="invoice-app__sidebar-card">
+            <div class="invoice-app__button-row">
+              <button class="invoice-app__button" data-action="save-invoice">Save</button>
+              <button class="invoice-app__button invoice-app__button--secondary" data-action="export-pdf">Export PDF</button>
+              <button class="invoice-app__button invoice-app__button--ghost" data-action="new-invoice">New</button>
+            </div>
+          </section>
+
+          <section class="invoice-app__sidebar-card">
+            <div data-saved-list class="invoice-app__saved-list"></div>
+          </section>
+
+        </aside>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<script src="app.js"></script>
+
+</body>
+</html>
